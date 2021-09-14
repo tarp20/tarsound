@@ -7,18 +7,30 @@
     Title
 </title>
 <meta name="google-signin-client_id"
-        content="239964446455-004cs4qfs0pmtvtug1uivaqglj3fet9k.apps.googleusercontent.com">
+        content="239964446455-skl0rpnmqvnb8smm54kfgfhk6qe53bvk.apps.googleusercontent.com">
 </head>
 
 <body>
-hello
-<div id="my-signin"></div>
+
+<div id="my-signin">x</div>
 
 <script>
     function onSuccess(googleUser){
         let profile = googleUser.getBasicProfile();
         console.log('Email: '+ profile.getEmail());
         let token = googleUser.getAuthResponse().getToken();
+        console.log('Token: ' + token);
+
+        fetch('', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json:charset=UTF-8'},
+          body: JSON.stringify({
+              email: profile.getEmail(),
+              token: token
+          })
+        })
+        .then(res => res.json())
+        .then(data => console.log('ID: '+ data.user_id + '\nToken: ' + data.access_token))
     }
 
 
@@ -32,7 +44,7 @@ hello
             'width': 240,
             'height': 50,
             'longtitle': true,
-            'theme': dark,
+            'theme': 'dark',
             'onsuccess': onSuccess,
             'onfailure': onFailure
         });
