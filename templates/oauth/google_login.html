@@ -21,7 +21,7 @@
         let token = googleUser.getAuthResponse().getToken();
         console.log('Token: ' + token);
 
-        fetch('', {
+        fetch('http://localhost:8000/api/v1/auth/google/', {
           method: 'POST',
           headers: {'Content-Type': 'application/json:charset=UTF-8'},
           body: JSON.stringify({
