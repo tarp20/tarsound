@@ -121,9 +121,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
 ALGORITHM = 'HS256'
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
 
-
 GOOLE_CLIENT_ID = '239964446455-skl0rpnmqvnb8smm54kfgfhk6qe53bvk.apps.googleusercontent.com'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES':
+    ('src.oauth.services.auth_backend.AuthBackend', ),
+    'DEFAULT_PERMISSION _CLASSES': ['rest_framework.permissions.AllowAny']
+}
